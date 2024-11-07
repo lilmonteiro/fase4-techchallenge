@@ -1,0 +1,17 @@
+Configurar o Ambiente Python
+Crie um ambiente virtual para instalar as bibliotecas necessárias, para evitar conflitos com outras bibliotecas que possam estar instaladas globalmente.
+
+py -m venv venv
+
+Ative o ambiente virtual
+venv\Scripts\activate
+
+Instale as bibliotecas necessárias listadas no código dentro do arquivo requirements.txt
+
+pip install -r requirements.txt
+
+Execute o script principal VideoAnalysis.py para iniciar o pipeline. O script abrirá o vídeo, processará seus frames, aplicará as anotações e salvará o resultado em output_video.mp4.
+
+py VideoAnalysis.py
+
+OBS: Por conta da biblioteca dlib, será necessário instalar o componente cmake no meio do processo através do cmake.org . Após a instalação, reinicie sua máquina.
