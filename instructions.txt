@@ -15,3 +15,4 @@ Execute o script principal VideoAnalysis.py para iniciar o pipeline. O script ab
 py VideoAnalysis.py
 
 OBS: Por conta da biblioteca dlib, será necessário instalar o componente cmake no meio do processo através do cmake.org . Após a instalação, reinicie sua máquina.
+Também será necessária a instalação do visual build studio tools, pra ser mais exato todas as opções existentes para python dentro do instalador.
