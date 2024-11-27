@@ -58,7 +58,7 @@ def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4"
             break
 
         frame_count += 1
-
+    print(activities)
     cap.release()
     out.release()
     cv2.destroyAllWindows()
@@ -70,7 +70,7 @@ def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4"
     print("Resumo salvo em", summary_filename)
 
 if __name__ == "__main__":
-    video_filename = "the_video.mp4"
+    video_filename = "liandra_test.mp4"
     summary_filename = "summary.txt"
 
     analyze_video(video_filename, summary_filename)
