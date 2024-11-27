@@ -5,3 +5,6 @@ deepface
 transformers
 tensorflow
 mediapipe
+tf-keras
+tqdm
+numpy
