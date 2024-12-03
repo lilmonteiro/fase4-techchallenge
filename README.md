@@ -1,6 +1,7 @@
 # Video Analysis Project
 
 ## Video do Projeto: https://youtu.be/QwQz5zwjO5A 
+## Relatório: https://github.com/lilmonteiro/fase4-techchallenge/blob/main/report.txt
 Este projeto realiza a análise de vídeo aplicando anotações e salvando o resultado em um novo arquivo.
 
 ## Configuração do Ambiente Python
