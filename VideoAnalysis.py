@@ -6,7 +6,7 @@ from ActivityDetection import activity_detection
 from SummaryGeneration import generate_summary
 import numpy as np
 
-def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4", summary_filename="summary.txt"):
+def analyze_video(video_filename="video.mp4", summary_filename="summary.txt"):
     video_path = os.path.join(os.getcwd(), video_filename)
     summary_path = os.path.join(os.getcwd(), summary_filename)
 
@@ -15,12 +15,9 @@ def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4"
         return
     
     cap = cv2.VideoCapture(video_path)
-    
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v') 
-    fps = cap.get(cv2.CAP_PROP_FPS)          
+           
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    out = cv2.VideoWriter(output_filename, fourcc, fps, (frame_width, frame_height))
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     frame_count = 0
@@ -35,9 +32,7 @@ def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4"
         ret, frame = cap.read()
         if not ret:
             break
-
-        # frame = cv2.resize(frame, (frame_width // 2, frame_height // 2))
-
+        
         if frame_count % 10 == 0:
             frame, face_locations = detect_faces_in_frame(frame)
 
@@ -50,9 +45,7 @@ def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4"
         
             frame, activities = activity_detection(frame, frame_width, frame_height, mouth_activities, left_eye_activities, right_eye_activities, anomaly_activities)
 
-        out.write(frame)
-        cv2.putText(frame, "TEste", (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 
-                        0.6, (255, 255, 255), 2)
+
         cv2.imshow('Video Analysis', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -60,17 +53,17 @@ def analyze_video(video_filename="video.mp4", output_filename="output_video.mp4"
         frame_count += 1
     print(activities)
     cap.release()
-    out.release()
     cv2.destroyAllWindows()
 
-    summary = generate_summary(activities, emotions, total_frames)
+    summary = generate_summary(activities, emotions)
     with open(summary_path, 'w') as f:
         f.write("Resumo do Vídeo:\n")
         f.write(summary)
+        f.write(f"The video contains a total of {total_frames} frames. ")
     print("Resumo salvo em", summary_filename)
 
 if __name__ == "__main__":
-    video_filename = "liandra_test.mp4"
+    video_filename = "video.mp4"
     summary_filename = "summary.txt"
 
     analyze_video(video_filename, summary_filename)
